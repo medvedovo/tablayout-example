@@ -2,6 +2,8 @@ package ru.medvedovo.tablayouttest.other;
 
 import android.os.Bundle;
 
+import ru.medvedovo.tablayouttest.presentation.details.DetailsFragment;
+import ru.medvedovo.tablayouttest.presentation.list.ListFragment;
 import ru.medvedovo.tablayouttest.presentation.tabs.TabsFragment;
 
 public final class FragmentFabric {
@@ -16,9 +18,9 @@ public final class FragmentFabric {
             case TABS:
                 return TabsFragment.newInstance(bundle);
             case LIST:
-                return null;
+                return ListFragment.newInstance(bundle);
             case DETAILS:
-                return null;
+                return DetailsFragment.newInstance(bundle);
         }
         return null;
     }

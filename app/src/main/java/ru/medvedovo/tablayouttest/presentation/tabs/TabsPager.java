@@ -6,12 +6,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import ru.medvedovo.tablayouttest.other.FragmentFabric;
+import ru.medvedovo.tablayouttest.presentation.list.ListFragment;
 
 public class TabsPager extends FragmentStatePagerAdapter {
 
     private int tabCount;
 
-    public TabsPager(FragmentManager fm, int tabCount) {
+    TabsPager(FragmentManager fm, int tabCount) {
         super(fm);
         this.tabCount = tabCount;
     }
@@ -21,11 +22,11 @@ public class TabsPager extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 Bundle catsBundle = new Bundle();
-                catsBundle.putString("", "cat");
+                catsBundle.putString(ListFragment.LIST_TYPE, "cat");
                 return (Fragment) FragmentFabric.create(FragmentFabric.Type.LIST, catsBundle);
             case 1:
                 Bundle dogsBundle = new Bundle();
-                dogsBundle.putString("", "dog");
+                dogsBundle.putString(ListFragment.LIST_TYPE, "dog");
                 return (Fragment) FragmentFabric.create(FragmentFabric.Type.LIST, dogsBundle);
             default:
                 return null;

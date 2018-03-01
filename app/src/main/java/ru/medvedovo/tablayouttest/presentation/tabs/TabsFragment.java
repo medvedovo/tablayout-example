@@ -32,6 +32,7 @@ public class TabsFragment extends MvpAppCompatFragment implements TabsView, Frag
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter.onCreate(getFragmentManager(), 2);
     }
 
     @Override
@@ -40,12 +41,12 @@ public class TabsFragment extends MvpAppCompatFragment implements TabsView, Frag
         pager = view.findViewById(R.id.pager);
         tabLayout = view.findViewById(R.id.tabLayout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Cats"), true);
+        pager.setAdapter(presenter.getPager());
+
+        tabLayout.addTab(tabLayout.newTab().setText("Cats"));
         tabLayout.addTab(tabLayout.newTab().setText("Dogs"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        //TabsPager adapter = new TabsPager(getFragmentManager(), tabLayout.getTabCount());
-        //pager.setAdapter(adapter);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -64,6 +65,31 @@ public class TabsFragment extends MvpAppCompatFragment implements TabsView, Frag
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.onResume();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.onPause();
+        Bundle bundle = new Bundle();
+        bundle.putString("hello", "world");
+        onSaveInstanceState(bundle);
     }
 
     @Override
